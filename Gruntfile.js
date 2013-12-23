@@ -4,6 +4,8 @@ module.exports = function (grunt) {
 	var modernizr = 'bower_components/modernizr/modernizr.js';
 	var jsFiles = [
 		'bower_components/jquery/jquery.min.js',
+		'bower_components/retina.js/src/retina.js',
+		'bower_components/knockout.js/knockout.js',
 		'bower_components/foundation/js/foundation/foundation.js',
 		'assets/js/app.js'
 	];
@@ -95,6 +97,9 @@ module.exports = function (grunt) {
 		},
 		initialize: {
 			www: ['www/assets/img', 'www/assets/css', 'www/assets/js']
+		},
+		clean: {
+			www: "www"
 		}
 	});
 
@@ -102,10 +107,12 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jade');
 	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-contrib-clean');
 
 	grunt.registerTask('default', ['sass:dist', 'uglify:dist', 'jade:dist']);
 	grunt.registerTask('dev', ['sass:dist', 'jade:dev']);
 	grunt.registerTask('deploy', [
+		'clean:www',
 		'sass:deploy',
 		'uglify:deploy',
 		'jade:deploy',
