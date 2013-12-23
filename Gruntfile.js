@@ -113,6 +113,7 @@ module.exports = function (grunt) {
 	grunt.registerTask('dev', ['sass:dist', 'jade:dev']);
 	grunt.registerTask('deploy', [
 		'clean:www',
+		'initialize:www',
 		'sass:deploy',
 		'uglify:deploy',
 		'jade:deploy',
