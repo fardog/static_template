@@ -93,8 +93,8 @@ module.exports = function (grunt) {
 		copy: {
 			dev: {
 				files: [
-					{src: ['src/*.js'], dest: 'assets/js/', filter: 'isFile'},
-					{src: ['src/img/*'], dest: 'assets/img/', filter: 'isFile'}
+					{expand: true, cwd: 'src/', src: ['*.js'], dest: 'assets/js/', filter: 'isFile'},
+					{expand: true, cwd: 'src/', src: ['img/*'], dest: 'assets/img/', filter: 'isFile'}
 				]
 			},
 			deploy: {
