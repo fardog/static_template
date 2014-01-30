@@ -32,9 +32,11 @@ The following files are relevant for creating a quick site:
 - `src/index.jade` — Will be processed into your `index.html` file.
 - `src/app.scss` — The primary SCSS which will be included in your `app.css` file, after Zurb Foundation's.
 - `src/_settings.scss` — The settings file for Zurb foundation, where you can change its defaults.
-- `assets/js/app.js` — Your primary Javascript file, which will be included in your `app.min.js` file after Zurb Foundation, jQuery, etc.
+- `src/app.js` — Your primary Javascript file, which will be included in your `app.min.js` file after Zurb Foundation, jQuery, etc.
 
 ### Using the build scripts
+
+**Warning:** The build scripts will overwrite, without any sort of warning, all of the contents of the `/assets/` and `/www/` directories. You should consider these directories to be volatile, and keep nothing in them. All files should come out of your `/src/` directory.
 
 The following commands are available to you:
 

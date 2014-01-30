@@ -91,16 +91,24 @@ module.exports = function (grunt) {
 			}
 		},
 		copy: {
+			dev: {
+				files: [
+					{src: ['src/*.js'], dest: 'assets/js/', filter: 'isFile'},
+					{src: ['src/img/*'], dest: 'assets/img/', filter: 'isFile'}
+				]
+			},
 			deploy: {
 				files: [
 					{expand: true, src: ['assets/img/*'], dest: 'www/', filter: 'isFile'}
 				]
-			}
+			},
 		},
 		initialize: {
+			assets: ['assets/img', 'assets/css', 'assets/js'],
 			www: ['www/assets/img', 'www/assets/css', 'www/assets/js']
 		},
 		clean: {
+			assets: "assets",
 			www: "www"
 		}
 	});
@@ -112,7 +120,13 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-clean');
 
 	grunt.registerTask('default', ['sass:dist', 'uglify:dist', 'jade:dist']);
-	grunt.registerTask('dev', ['sass:dist', 'jade:dev']);
+	grunt.registerTask('dev', [
+		'clean:assets',
+		'initialize:assets',
+		'copy:dev',
+		'sass:dist',
+		'jade:dev'
+	]);
 	grunt.registerTask('deploy', [
 		'clean:www',
 		'initialize:www',

@@ -20,6 +20,6 @@ node_modules
 config.json
 index.html
 
-bower_components
-www
-/assets/css/app.css
+/bower_components/
+/www/
+/assets/
