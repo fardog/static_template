@@ -40,10 +40,9 @@ The following files are relevant for creating a quick site:
 
 The following commands are available to you:
 
-- `grunt dev` — Build the site in development mode. This will compile SCSS to CSS and create your `index.html` file in the root of your project, which will link to your development javascript and compiled CSS files.
+- `grunt dev` — Build the site in development mode, run a local server, and watch for changes. This will compile SCSS to CSS and create your `index.html` file in the root of your project, which will link to your development javascript and compiled CSS files. If you make any changes to the contents of the `/src/` directory, it will trigger a reload on the development server, which runs on http://localhost:8002/
 - `grunt deploy` — This will build your complete site in the `www` directory, including minimized CSS and Javascript which are ready for deployment. All files that are included in the `assets/img/` directory will automatically be copied to their places in `www`.
 
-**Note:** a local web-serving script is not included. On Mac OS X, I serve the development or production site by `cd`-ing to the project root or `www` respectively and running `python -m SimpleHTTPServer 8001` to start serving the directory on `http://localhost:8001`. You can use your server of choice for testing.
 
 The MIT License (MIT)
 ---------------------

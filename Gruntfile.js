@@ -110,6 +110,22 @@ module.exports = function (grunt) {
 		clean: {
 			assets: "assets",
 			www: "www"
+		},
+		watch: {
+			files: ['src/*'],
+			tasks: ['copy:dev', 'sass:dist', 'jade:dev'],
+			options: {
+				livereload: true
+			}
+		},
+		connect: {
+			all: {
+				options: {
+					port: 8002,
+					base: __dirname,
+					livereload: true
+				}
+			}
 		}
 	});
 
@@ -118,6 +134,9 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-connect');
+
 
 	grunt.registerTask('default', ['sass:dist', 'uglify:dist', 'jade:dist']);
 	grunt.registerTask('dev', [
@@ -125,7 +144,9 @@ module.exports = function (grunt) {
 		'initialize:assets',
 		'copy:dev',
 		'sass:dist',
-		'jade:dev'
+		'jade:dev',
+		'connect',
+		'watch'
 	]);
 	grunt.registerTask('deploy', [
 		'clean:www',
