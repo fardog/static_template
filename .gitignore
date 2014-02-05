@@ -16,10 +16,14 @@ results
 
 npm-debug.log
 node_modules
-/working/
 config.json
-index.html
 
-/bower_components/
+bower_components
+
+# build directories
 /www/
-/assets/
+/build/
+
+# temporary / working directories
+/working/
+

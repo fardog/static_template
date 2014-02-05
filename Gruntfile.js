@@ -1,5 +1,7 @@
 'use strict';
 
+var path = require('path');
+
 module.exports = function (grunt) {
 	var modernizr = 'bower_components/modernizr/modernizr.js';
 	var jsFiles = [
@@ -16,12 +18,6 @@ module.exports = function (grunt) {
 
 	grunt.initConfig({
 		uglify: {
-			dist: {
-				files: {
-					'assets/js/modernizr.min.js': modernizr,
-					'assets/js/app.min.js': jsFiles
-				}
-			},
 			deploy: {
 				files: {
 					'www/assets/js/modernizr.min.js': modernizr,
@@ -36,41 +32,32 @@ module.exports = function (grunt) {
 					}
 				},
 				files: {
-					'assets/js/app.min.js': jsFiles
+					'build/assets/js/app.min.js': jsFiles
 				}
 			}
 		},
 		sass: {
-			dist: {
+			dev: {
 				files: {
-					'assets/css/app.css': 'src/app.scss'
+					'build/assets/css/app.css': 'src/app.scss'
 				}
 			},
 			deploy: {
 				files: {
-					'www/assets/css/app.css': 'src/app.scss'
+					'www/assets/css/app.min.css': 'src/app.scss'
+				},
+				options: {
+					style: 'compressed'
 				}
 			}
 		},
 		jade: {
-			dist: {
-				options: {
-					data: {
-						modernizr: 'assets/js/modernizr.min.js',
-						js: ['assets/js/app.min.js'],
-						css: ['assets/css/app.css']
-					}
-				},
-				files: {
-					'index.html': ['src/index.jade']
-				}
-			},
 			deploy: {
 				options: {
 					data: {
 						modernizr: 'assets/js/modernizr.min.js',
 						js: ['assets/js/app.min.js'],
-						css: ['assets/css/app.css']
+						css: ['assets/css/app.min.css']
 					}
 				},
 				files: {
@@ -83,37 +70,38 @@ module.exports = function (grunt) {
 						modernizr: modernizr,
 						js: jsFiles,
 						css: ['assets/css/app.css']
-					}
+					},
+					pretty: true
 				},
 				files: {
-					'index.html': ['src/index.jade']
+					'build/index.html': ['src/index.jade']
 				}
 			}
 		},
 		copy: {
 			dev: {
 				files: [
-					{expand: true, cwd: 'src/', src: ['*.js'], dest: 'assets/js/', filter: 'isFile'},
-					{expand: true, cwd: 'src/', src: ['img/*'], dest: 'assets/img/', filter: 'isFile'}
+					{expand: true, cwd: 'src/', src: ['*.js'], dest: 'build/assets/js/', filter: 'isFile'},
+					{expand: true, cwd: 'src/', src: ['img/*'], dest: 'build/assets/img/', filter: 'isFile'}
 				]
 			},
 			deploy: {
 				files: [
-					{expand: true, src: ['assets/img/*'], dest: 'www/', filter: 'isFile'}
+					{expand: true, cwd: 'src/', src: ['img/*'], dest: 'www/assets/img/', filter: 'isFile'}
 				]
 			},
 		},
 		initialize: {
-			assets: ['assets/img', 'assets/css', 'assets/js'],
+			build: ['build/assets/img', 'build/assets/css', 'build/assets/js'],
 			www: ['www/assets/img', 'www/assets/css', 'www/assets/js']
 		},
 		clean: {
-			assets: "assets",
+			build: "build",
 			www: "www"
 		},
 		watch: {
 			files: ['src/*'],
-			tasks: ['copy:dev', 'sass:dist', 'jade:dev'],
+			tasks: ['copy:dev', 'sass:dev', 'jade:dev'],
 			options: {
 				livereload: true
 			}
@@ -122,7 +110,7 @@ module.exports = function (grunt) {
 			all: {
 				options: {
 					port: 8002,
-					base: __dirname,
+					base: [path.join(__dirname, 'build'), __dirname],
 					livereload: true
 				}
 			}
@@ -138,12 +126,12 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-connect');
 
 
-	grunt.registerTask('default', ['sass:dist', 'uglify:dist', 'jade:dist']);
+	grunt.registerTask('default', ['copy:dev', 'sass:dev', 'jade:dev']);
 	grunt.registerTask('dev', [
-		'clean:assets',
-		'initialize:assets',
+		'clean:build',
+		'initialize:build',
 		'copy:dev',
-		'sass:dist',
+		'sass:dev',
 		'jade:dev',
 		'connect',
 		'watch'
@@ -159,7 +147,7 @@ module.exports = function (grunt) {
 	grunt.registerMultiTask('initialize', 'Created directory hierarchy', function() {
 		console.log('Initializing directories for ' + this.target);
 		for (var i = 0; i < this.data.length; i++) {
-			grunt.file.mkdir(__dirname + '/' + this.data[i]);
+			grunt.file.mkdir(path.join(__dirname, '/', this.data[i]));
 		}
 	});
 };

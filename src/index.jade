@@ -7,23 +7,23 @@ html(lang="en")
     meta(name="description", content="PROJECT_DESCRIPTION")
     meta(name="author", content="Nathan Wittstock, Far Dog LLC")
     meta(name="keywords", content="PROJECT_KEYWORDS")
-    meta(name="copyright", content="Far Dog LLC, Copyright (c) 2013.")
+    meta(name="copyright", content="Far Dog LLC, Copyright (c) 2014.")
 
     script(type="text/javascript", src=modernizr)
     each file in css
       link(rel="stylesheet", href=file)
   body
-    nav.row
-      .large-1.small-2.columns
-        | Navigation
-
-      .large-11.small-10.columns
-        h1 This is a header
+    .row
+      .medium-6.medium-centered.columns
+        h1 Static Site Template
+        p.
+          See README.md for details on how to use this template and its
+          build scripts.
 
     .row
-      .large-8.small-8.columns
+      .medium-6.medium-centered.columns
         footer
-          &copy; 2013 
+          | &copy; 2014 
           a(href="http://fardogllc.com/", target="_blank") Far Dog LLC
 
     each file in js
