@@ -20,8 +20,6 @@ Usage
 `cd my_project_name && rm -rf .git && git init .`
 3. Once your project is set up, install the necessary components:  
 `npm install && bower install`
-4. Create some directory hierarchy:  
-`grunt initialize`
 
 ### Creating your site
 
