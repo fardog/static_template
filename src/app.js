@@ -10,7 +10,6 @@ $(document).ready(function() {
 	var viewModel = function() {
 		var self = this;
 
-		self.header = ko.observable("Static Site Template");
 	}; /* end viewModel */
 
 
