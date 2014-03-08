@@ -23,17 +23,6 @@ module.exports = function (grunt) {
 					'www/assets/js/modernizr.min.js': modernizr,
 					'www/assets/js/app.min.js': jsFiles
 				}
-			},
-			dev: {
-				options: {
-					beautify: {
-						width: 80,
-						beautify: true
-					}
-				},
-				files: {
-					'build/assets/js/app.min.js': jsFiles
-				}
 			}
 		},
 		sass: {
