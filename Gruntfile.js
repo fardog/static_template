@@ -152,7 +152,4 @@ module.exports = function (grunt) {
 			grunt.file.mkdir(path.join(__dirname, '/', this.data[i]));
 		}
 	});
-
-	grunt.registerMultiTask('initialize_do', 'Initializing project…', function() {
-	});
 };
