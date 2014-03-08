@@ -103,7 +103,7 @@ module.exports = function (grunt) {
 				]
 			},
 		},
-		initialize: {
+		create_directories: {
 			build: ['build/assets/img', 'build/assets/css', 'build/assets/js'],
 			www: ['www/assets/img', 'www/assets/css', 'www/assets/js']
 		},
@@ -142,7 +142,7 @@ module.exports = function (grunt) {
 	grunt.registerTask('default', ['copy:dev', 'sass:dev', 'jade:dev']);
 	grunt.registerTask('dev', [
 		'clean:build',
-		'initialize:build',
+		'create_directories:build',
 		'copy:dev',
 		'sass:dev',
 		'jade:dev',
@@ -151,14 +151,14 @@ module.exports = function (grunt) {
 	]);
 	grunt.registerTask('deploy', [
 		'clean:www',
-		'initialize:www',
+		'create_directories:www',
 		'sass:deploy',
 		'uglify:deploy',
 		'jade:deploy',
 		'copy:deploy',
 	]);
-	grunt.registerMultiTask('initialize', 'Created directory hierarchy', function() {
-		console.log('Initializing directories for ' + this.target);
+	grunt.registerMultiTask('create_directories', 'Created directory hierarchy', function() {
+		console.log('Creating directories for ' + this.target);
 		for (var i = 0; i < this.data.length; i++) {
 			grunt.file.mkdir(path.join(__dirname, '/', this.data[i]));
 		}
