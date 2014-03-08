@@ -1,10 +1,10 @@
 {
-  "name": "project_name",
+  "name": "PROJECT_NAME",
   "version": "0.0.1",
   "authors": [
     "Nathan Wittstock <code@fardogllc.com>"
   ],
-  "description": "",
+  "description": "PROJECT_DESCRIPTION",
   "main": "assets/css/app.css",
   "license": "MIT",
   "private": true,

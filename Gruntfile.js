@@ -5,7 +5,7 @@ var path = require('path');
 module.exports = function (grunt) {
 	var modernizr = 'bower_components/modernizr/modernizr.js';
 	var jsFiles = [
-		'bower_components/jquery/jquery.min.js',
+		'bower_components/jquery/dist/jquery.min.js',
 		'bower_components/retina.js/src/retina.js',
 		'bower_components/knockout.js/knockout.js',
 		'bower_components/foundation/js/foundation/foundation.js',
@@ -146,10 +146,13 @@ module.exports = function (grunt) {
 		'jade:deploy',
 		'copy:deploy',
 	]);
-	grunt.registerMultiTask('create_directories', 'Created directory hierarchy', function() {
+	grunt.registerMultiTask('create_directories', 'Created directory hierarchy.', function() {
 		console.log('Creating directories for ' + this.target);
 		for (var i = 0; i < this.data.length; i++) {
 			grunt.file.mkdir(path.join(__dirname, '/', this.data[i]));
 		}
+	});
+
+	grunt.registerMultiTask('initialize_do', 'Initializing project…', function() {
 	});
 };
