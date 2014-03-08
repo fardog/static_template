@@ -60,9 +60,15 @@ module.exports = function (grunt) {
 						css: ['assets/css/app.min.css']
 					}
 				},
-				files: {
-					'www/index.html': ['src/index.jade']
-				}
+				files: [
+					{
+						expand: true,
+						cwd: 'src/',
+						src: ['*.jade'],
+						dest: 'www/',
+						ext: '.html'
+					}
+				]
 			},
 			dev: {
 				options: {
@@ -73,9 +79,15 @@ module.exports = function (grunt) {
 					},
 					pretty: true
 				},
-				files: {
-					'build/index.html': ['src/index.jade']
-				}
+				files: [
+					{
+						expand: true,
+						cwd: 'src/',
+						src: ['*.jade'],
+						dest: 'build/',
+						ext: '.html'
+					}
+				]
 			}
 		},
 		copy: {
@@ -97,7 +109,8 @@ module.exports = function (grunt) {
 		},
 		clean: {
 			build: "build",
-			www: "www"
+			www: "www",
+			tmp: [".sass-cache"]
 		},
 		watch: {
 			files: ['src/*'],
