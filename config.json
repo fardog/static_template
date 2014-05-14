@@ -9,5 +9,25 @@
 		"bower_components/bootstrap/dist/js/bootstrap.js",
 		"bower_components/instantclick/instantclick.js",
 		"assets/js/app.js"
-	]
+	],
+	"build": {
+		"default": ["copy:dev", "less:dev", "jade:dev"],
+		"dev": [
+			"clean:build",
+			"create_directories:build",
+			"copy:dev",
+			"less:dev",
+			"jade:dev",
+			"connect",
+			"watch"
+		],
+		"deploy": [
+			"clean:www",
+			"create_directories:www",
+			"less:deploy",
+			"uglify:deploy",
+			"jade:deploy",
+			"copy:deploy"
+		]
+	}
 }

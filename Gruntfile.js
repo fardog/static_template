@@ -121,24 +121,9 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	
 	
-	grunt.registerTask('default', ['copy:dev', 'less:dev', 'jade:dev']);
-	grunt.registerTask('dev', [
-		'clean:build',
-		'create_directories:build',
-		'copy:dev',
-		'less:dev',
-		'jade:dev',
-		'connect',
-		'watch'
-	]);
-	grunt.registerTask('deploy', [
-		'clean:www',
-		'create_directories:www',
-		'less:deploy',
-		'uglify:deploy',
-		'jade:deploy',
-		'copy:deploy',
-	]);
+	grunt.registerTask('default', config.build.default);
+	grunt.registerTask('dev', config.build.dev);
+	grunt.registerTask('deploy', config.build.deploy);
 	grunt.registerMultiTask('create_directories', 'Created directory hierarchy.', function() {
 		console.log('Creating directories for ' + this.target);
 		for (var i = 0; i < this.data.length; i++) {
