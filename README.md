@@ -23,7 +23,7 @@ Usage
 
 ### Creating your site
 
-The default Gruntfile will have you working with just a few files; you can always include more if necessary, but this template is designed for creating one-page sites with [Jade](http://jade-lang.com/), [SASS](http://sass-lang.com/), [Knockout](http://knockoutjs.com/), and [RetinaJS](http://retinajs.com/).
+The default Gruntfile will have you working with just a few files; you can always include more if necessary, but this template is designed for creating one-page sites with [Jade](http://jade-lang.com/), [LESS](http://lesscss.org/), [Knockout](http://knockoutjs.com/), and [RetinaJS](http://retinajs.com/).
 
 The following files are relevant for creating a quick site:
 
