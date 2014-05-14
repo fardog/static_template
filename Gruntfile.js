@@ -9,6 +9,7 @@ module.exports = function (grunt) {
 		'bower_components/retina.js/src/retina.js',
 		'bower_components/knockout.js/knockout.js',
 		'bower_components/foundation/js/foundation/foundation.js',
+		'bower_components/instantclick/instantclick.js',
 		'assets/js/app.js'
 	];
 

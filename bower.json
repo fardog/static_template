@@ -18,6 +18,7 @@
 	"dependencies": {
 		"foundation": "^5.2.0",
 		"knockout.js": "^3.0.0",
-		"retina.js": "^1.2.0"
+		"retina.js": "^1.2.0",
+		"instantclick": "*"
 	}
 }
