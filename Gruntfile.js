@@ -81,7 +81,8 @@ module.exports = function (grunt) {
 			},
 			deploy: {
 				files: [
-					{expand: true, cwd: 'src/', src: ['img/*'], dest: 'www/assets/img/', filter: 'isFile'}
+					{expand: true, cwd: 'src/', src: ['img/*'], dest: 'www/assets/img/', filter: 'isFile'},
+					{expand: true, cwd: './', src: ['package.json'], dest: 'www/', filter: 'isFile'}
 				]
 			},
 		},
@@ -101,6 +102,16 @@ module.exports = function (grunt) {
 				livereload: true
 			}
 		},
+		nodewebkit: {
+	    options: {
+	        build_dir: './webkitbuilds', // Where the build version of my node-webkit app is saved
+	        mac: true, // We want to build it for mac
+	        win: false, // We want to build it for win
+	        linux32: false, // We don't need linux32
+	        linux64: false // We don't need linux64
+	    },
+	    src: ['./www/**/*'] // Your node-webkit app
+	  },
 		connect: {
 			all: {
 				options: {
@@ -119,6 +130,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-connect');
+	grunt.loadNpmTasks('grunt-node-webkit-builder');
 	
 	
 	grunt.registerTask('default', config.build.default);
