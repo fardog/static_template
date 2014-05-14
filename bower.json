@@ -5,7 +5,7 @@
     "Nathan Wittstock <code@fardogllc.com>"
   ],
   "description": "PROJECT_DESCRIPTION",
-  "main": "assets/css/app.css",
+  "main": "build/index.html",
   "license": "MIT",
   "private": true,
   "ignore": [
@@ -15,10 +15,11 @@
     "test",
     "tests"
   ],
-	"dependencies": {
-		"foundation": "^5.2.0",
-		"knockout.js": "^3.0.0",
-		"retina.js": "^1.2.0",
-		"instantclick": "*"
-	}
+  "dependencies": {
+    "jquery": "^1.9.0",
+    "bootstrap": "~3.1.1",
+    "knockout.js": "^3.0.0",
+    "instantclick": "*",
+    "modernizr": "~2.8.1"
+  }
 }

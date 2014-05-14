@@ -1,7 +1,7 @@
 Static Template
 ===============
 
-A template for quickly creating static sites with Zurb Foundation and Knockout JS.
+A template for quickly creating static sites with Twitter Bootstrap, LESS, JADE, and Knockout JS.
 
 Usage
 -----
@@ -28,17 +28,18 @@ The default Gruntfile will have you working with just a few files; you can alway
 The following files are relevant for creating a quick site:
 
 - `src/index.jade` — Will be processed into your `index.html` file.
-- `src/app.scss` — The primary SCSS which will be included in your `app.css` file, after Zurb Foundation's.
-- `src/_settings.scss` — The settings file for Zurb foundation, where you can change its defaults.
-- `src/app.js` — Your primary Javascript file, which will be included in your `app.min.js` file after Zurb Foundation, jQuery, etc.
+- `src/app.less` — The primary LESS which will be included in your `app.css` file, after Bootstrap's.
+- `src/bootstrap/variables.less` — The variables file copies from Bootstrap, so you can customize any variables prior to Bootstrap being loaded.
+- `src/bootstrap/bootstrap.less` — The include file copied from Bootstrap, so you can add/remove components as needed.
+- `src/app.js` — Your primary Javascript file, which will be included in your `app.min.js` file after jQuery, Bootstrap, etc.
 
 ### Using the build scripts
 
-**Warning:** The build scripts will overwrite, without any sort of warning, all of the contents of the `/build/` and `/www/` directories. You should consider these directories to be volatile, and keep nothing in them. All files should come out of your `/src/` directory.
+> **Warning:** The build scripts will overwrite, without any sort of warning, all of the contents of the `/build/` and `/www/` directories. You should consider these directories to be volatile, and keep nothing in them. All files should come out of your `/src/` directory.
 
 The following commands are available to you:
 
-- `grunt dev` — Build the site in development mode, run a local server, and watch for changes. This will compile SCSS to CSS and create your `index.html` file in the root of your project, which will link to your development javascript and compiled CSS files. If you make any changes to the contents of the `/src/` directory, it will trigger a reload on the development server, which runs on http://localhost:8002/
+- `grunt dev` — Build the site in development mode, run a local server, and watch for changes. This will compile LESS to CSS and create your `index.html` file in the root of your project, which will link to your development javascript and compiled CSS files. If you make any changes to the contents of the `/src/` directory, it will trigger a reload on the development server, which runs on http://localhost:8002/
 - `grunt deploy` — This will build your complete site in the `www` directory, including minimized CSS and Javascript which are ready for deployment. All files that are included in the `src/img/` directory will automatically be copied to their places in `www`.
 
 

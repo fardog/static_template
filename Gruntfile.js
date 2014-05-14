@@ -1,22 +1,14 @@
 'use strict';
 
 var path = require('path');
+var config = require('./config.json');
 
 module.exports = function (grunt) {
-	var modernizr = 'bower_components/modernizr/modernizr.js';
-	var jsFiles = [
-		'bower_components/jquery/dist/jquery.min.js',
-		'bower_components/retina.js/src/retina.js',
-		'bower_components/knockout.js/knockout.js',
-		'bower_components/foundation/js/foundation/foundation.js',
-		'bower_components/instantclick/instantclick.js',
-		'assets/js/app.js'
-	];
-
-	var cssFiles = [
-		'assets/css/app.css'
-	];
-
+	var modernizr = config.modernizr;
+	var jsFiles = config.javascripts;
+	
+	var cssFiles = config.css;
+	
 	grunt.initConfig({
 		uglify: {
 			deploy: {
@@ -26,15 +18,15 @@ module.exports = function (grunt) {
 				}
 			}
 		},
-		sass: {
+		less: {
 			dev: {
 				files: {
-					'build/assets/css/app.css': 'src/app.scss'
+					'build/assets/css/app.css': 'src/app.less'
 				}
 			},
 			deploy: {
 				files: {
-					'www/assets/css/app.min.css': 'src/app.scss'
+					'www/assets/css/app.min.css': 'src/app.less'
 				},
 				options: {
 					style: 'compressed'
@@ -104,7 +96,7 @@ module.exports = function (grunt) {
 		},
 		watch: {
 			files: ['src/*'],
-			tasks: ['copy:dev', 'sass:dev', 'jade:dev'],
+			tasks: ['copy:dev', 'less:dev', 'jade:dev'],
 			options: {
 				livereload: true
 			}
@@ -119,22 +111,22 @@ module.exports = function (grunt) {
 			}
 		}
 	});
-
+	
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-jade');
-	grunt.loadNpmTasks('grunt-contrib-sass');
+	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-connect');
-
-
-	grunt.registerTask('default', ['copy:dev', 'sass:dev', 'jade:dev']);
+	
+	
+	grunt.registerTask('default', ['copy:dev', 'less:dev', 'jade:dev']);
 	grunt.registerTask('dev', [
 		'clean:build',
 		'create_directories:build',
 		'copy:dev',
-		'sass:dev',
+		'less:dev',
 		'jade:dev',
 		'connect',
 		'watch'
@@ -142,7 +134,7 @@ module.exports = function (grunt) {
 	grunt.registerTask('deploy', [
 		'clean:www',
 		'create_directories:www',
-		'sass:deploy',
+		'less:deploy',
 		'uglify:deploy',
 		'jade:deploy',
 		'copy:deploy',
