@@ -14,7 +14,7 @@ module.exports = function (grunt) {
 			deploy: {
 				files: {
 					'www/assets/js/modernizr.min.js': modernizr,
-					'www/assets/js/app.min.js': jsFiles
+					'www/assets/js/app.min.js': jsFiles.concat('src/app.js')
 				}
 			}
 		},
@@ -76,12 +76,12 @@ module.exports = function (grunt) {
 			dev: {
 				files: [
 					{expand: true, cwd: 'src/', src: ['*.js'], dest: 'build/assets/js/', filter: 'isFile'},
-					{expand: true, cwd: 'src/', src: ['img/*'], dest: 'build/assets/img/', filter: 'isFile'}
+					{expand: true, cwd: 'src/img/', src: ['*'], dest: 'build/assets/img/', filter: 'isFile'}
 				]
 			},
 			deploy: {
 				files: [
-					{expand: true, cwd: 'src/', src: ['img/*'], dest: 'www/assets/img/', filter: 'isFile'},
+					{expand: true, cwd: 'src/img/', src: ['*'], dest: 'www/assets/img/', filter: 'isFile'},
 					{expand: true, cwd: './', src: ['package.json'], dest: 'www/', filter: 'isFile'}
 				]
 			},
